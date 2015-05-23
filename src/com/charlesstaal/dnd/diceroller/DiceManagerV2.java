@@ -43,9 +43,10 @@ public class DiceManagerV2 {
     
     public Map<String, Integer> roll(){
         Map<String, Integer> resultMap = new HashMap();
-        for(Dice die : diceList){
+        diceList.stream().forEach((die) -> {
             resultMap.put(die.getType(), die.roll());
-        }
+        });
+        diceList.clear();
         return resultMap;
     }
 }
