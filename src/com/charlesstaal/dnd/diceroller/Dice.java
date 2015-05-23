@@ -17,12 +17,19 @@ import java.util.Random;
  */
 public class Dice {
 
-    private Map<Integer, Integer> rollMap = new HashMap();
+    private Map<Integer, Integer> diceMap = new HashMap();
 
     public Dice() {
 
     }
 
+    /**
+     * This method adds a roll in to the diceMap to be rolled.
+     *
+     * @param diceType "D6", "D10", etc. It is not case sensitive.
+     * @param rolls How many times to roll this specific die.
+     * @throws Exception If the type of die is not supported.
+     */
     public void addRoll(String diceType, int rolls) throws Exception {
         diceType = diceType.toUpperCase();
         int sides = 0;
@@ -51,21 +58,27 @@ public class Dice {
             default:
                 throw new Exception("Dice type not supported.");
         }
-        this.rollMap.put(sides, rolls);
+        this.diceMap.put(sides, rolls);
     }
 
+    /**
+     * Rolls the dice in diceMap.
+     *
+     * @return A Map that has the key (the type of die), and the value (a List
+     * of integers for the results of each roll of that dice).
+     */
     public Map<String, List<Integer>> roll() {
         Map<String, List<Integer>> resultMap = new HashMap();
         List<Integer> values = new ArrayList();
-        for (int sides : this.rollMap.keySet()) {
-            for (int rolls = 0; rolls < this.rollMap.get(sides); rolls++) {
+        for (int sides : this.diceMap.keySet()) {
+            for (int rolls = 0; rolls < this.diceMap.get(sides); rolls++) {
                 Random randomGenerator = new Random();
                 values.add(randomGenerator.nextInt(sides) + 1);
             }
             resultMap.put("D" + Integer.toString(sides), values);
             values.clear();
         }
-        this.rollMap.clear();
+        this.diceMap.clear();
         return resultMap;
     }
 }
