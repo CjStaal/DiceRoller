@@ -29,7 +29,7 @@ import java.util.Map;
 public class DiceManagerV2 {
     
     
-    private List<Dice> diceList = new LinkedList();
+    private List<Die> diceList = new LinkedList();
     
     public DiceManagerV2(){
         
@@ -37,7 +37,7 @@ public class DiceManagerV2 {
     
     public void addADie(int sides){
         if(0 > sides && sides <= 100){
-            diceList.add(new Dice(sides));
+            diceList.add(new Die(sides));
         }
     }
     

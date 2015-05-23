@@ -23,12 +23,12 @@ import java.util.Random;
  *
  * @author Charles Joseph Staal
  */
-public class Dice {
+public class Die {
 
     private final String type;
     private final int sides;
 
-    public Dice(int sides) {
+    public Die(int sides) {
         this.sides = sides;
         this.type = "D" + Integer.toString(sides);
     }
